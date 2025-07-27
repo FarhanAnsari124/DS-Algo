@@ -10,12 +10,8 @@ public:
         int cnt=0;
         int n=v.size();
         for(int i=1;i<n-1;i++){
-            if(v[i-1]>v[i] && v[i+1]>v[i]){
+            if((v[i-1]>v[i] && v[i+1]>v[i]) || (v[i-1]<v[i] && v[i+1]<v[i]))
                 cnt++;
-            }
-            else if(v[i-1]<v[i] && v[i+1]<v[i]){
-                cnt++;
-            }
         }
         return cnt;
 

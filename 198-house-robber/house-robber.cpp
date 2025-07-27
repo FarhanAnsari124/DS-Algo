@@ -1,19 +1,15 @@
 class Solution {
 public:
-    int maxsum=0;
-    int solve(int ind,int n,vector<int>&nums,vector<int>&dp){
-        if(ind>=n){
-            return 0;
-        }
-        if(dp[ind]!=-1)return dp[ind];
-        int pick=nums[ind]+solve(ind+2,n,nums,dp);
-        int not_pick=0+solve(ind+1,n,nums,dp);
-        return dp[ind]=max(pick,not_pick);
-    }
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n+1,-1);
-       int ans=solve(0,n,nums,dp);
-        return ans;
+        vector<int>dp(n+1);
+        dp[0]=0;
+        dp[1]=nums[0];
+        for(int i=2;i<=n;i++){
+            int steal=nums[i-1]+dp[i-2];
+            int skip=dp[i-1];
+            dp[i]=max(steal,skip);
+        }
+        return dp[n];
     }
 };

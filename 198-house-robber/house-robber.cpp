@@ -1,20 +1,19 @@
 class Solution {
 public:
     int maxsum=0;
-    int solve(int ind,vector<int>&nums,vector<int>&dp){
-        if(ind==0){
-            return nums[ind];
+    int solve(int ind,int n,vector<int>&nums,vector<int>&dp){
+        if(ind>=n){
+            return 0;
         }
-        if(ind<0)return 0;
         if(dp[ind]!=-1)return dp[ind];
-        int pick=nums[ind]+solve(ind-2,nums,dp);
-        int not_pick=0+solve(ind-1,nums,dp);
+        int pick=nums[ind]+solve(ind+2,n,nums,dp);
+        int not_pick=0+solve(ind+1,n,nums,dp);
         return dp[ind]=max(pick,not_pick);
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
         vector<int>dp(n+1,-1);
-       int ans=solve(n-1,nums,dp);
+       int ans=solve(0,n,nums,dp);
         return ans;
     }
 };

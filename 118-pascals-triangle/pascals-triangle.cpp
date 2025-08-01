@@ -7,8 +7,8 @@ public:
         else{
             vector<vector<int>>main;
             main.push_back({1});
-            main.push_back({1,1});
-            for(int i=2;i<numrows;i++){
+            // main.push_back({1,1});
+            for(int i=1;i<numrows;i++){
                 vector<int>temp;
                 temp.push_back(1);
                 for(int j=0;j<i-1;j++){

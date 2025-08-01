@@ -1,13 +1,10 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numrows) {
-        int n=numrows-1;
-        if(n==0)return {{1}};
-        else if(n==1)return {{1},{1,1}};
+        if(numrows==1)return {{1}};
         else{
             vector<vector<int>>main;
             main.push_back({1});
-            // main.push_back({1,1});
             for(int i=1;i<numrows;i++){
                 vector<int>temp;
                 temp.push_back(1);

@@ -16,18 +16,21 @@ public:
         // for(int j=0;j<n;j++){
         //     ans=min(ans,solve(0,j,n,matrix,dp));
         // }
+        vector<int>temp(n,0);
         for(int j=0;j<n;j++){
-            dp[n-1][j]=matrix[n-1][j];
+            temp[j]=matrix[n-1][j];
         }
         for(int i=n-2;i>=0;i--){
+            vector<int>curr(n,0);
             for(int j=n-1;j>=0;j--){
-                int d=matrix[i][j]+dp[i+1][j];
+                int d=matrix[i][j]+temp[j];
                 int ld=1e9,rd=1e9;
-                if(j>0)ld=matrix[i][j]+dp[i+1][j-1];
-                if(j<n-1)rd=matrix[i][j]+dp[i+1][j+1];
-                dp[i][j]=min({d,ld,rd});
+                if(j>0)ld=matrix[i][j]+temp[j-1];
+                if(j<n-1)rd=matrix[i][j]+temp[j+1];
+                curr[j]=min({d,ld,rd});
             }
+            temp=curr;
         }
-        return *min_element(dp[0].begin(),dp[0].end());
+        return *min_element(temp.begin(),temp.end());
     }
 };

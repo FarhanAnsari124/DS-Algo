@@ -5,12 +5,9 @@ public:
             return 0;
         }
         if(i==0){
-            int cnt=0;
-            while(c[0]<=target){
-                target-=c[0];
-                cnt++;
+            if(target%c[i]==0){
+                return target/c[i];
             }
-            if(target==0)return cnt;
             return 1e9;
         }
         if(dp[i][target]!=-1)return dp[i][target];

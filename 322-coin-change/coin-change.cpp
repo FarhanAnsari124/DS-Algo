@@ -23,9 +23,26 @@ public:
     }
     int coinChange(vector<int>& c, int amount) {
         int n=c.size();
-        vector<vector<int>>dp(n,vector<int>(amount+1,-1));
-        int ans=solve(n-1,amount,c,dp);
-        if(ans==1e9)return -1;
-        return ans;
+        vector<vector<int>>dp(n,vector<int>(amount+1,0));
+        // int ans=solve(n-1,amount,c,dp);
+        // if(ans==1e9)return -1;
+        // return ans;
+
+        for(int i=0;i<=amount;i++){
+            if(i%c[0]==0){
+                dp[0][i]=i/c[0];
+            }else dp[0][i]=1e9;
+        }
+        for(int i=1;i<n;i++){
+            for(int target=0;target<=amount;target++){
+                int nt=0+dp[i-1][target];
+                int t=1e9;
+                if(target>=c[i])
+                t=1+dp[i][target-c[i]];
+                dp[i][target]=min(nt,t);
+            }
+        }
+        if(dp[n-1][amount]==1e9)return -1;
+        return dp[n-1][amount];
     }
 };

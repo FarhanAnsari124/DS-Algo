@@ -15,23 +15,25 @@ public:
         return dp[i][t]=take+nt;
     }
     int change(int amount, vector<int>& c) {
-        int n=c.size();
-        vector<vector<unsigned long long>>dp(n,vector<unsigned long long>(amount+1,1));
         // return solve(n-1,amount,c,dp);
+        int n=c.size();
+        vector<unsigned long long>prev(amount+1,1);
         for(int t=0;t<=amount;t++){
             if(t%c[0]==0){
-                dp[0][t]=1;
+                prev[t]=1;
             }
-            else dp[0][t]=0;
+            else prev[t]=0;
         }
         for(int i=1;i<n;i++){
+            vector<unsigned long long>curr(amount+1,0);
             for(int t=0;t<=amount;t++){
-                unsigned long long nt=dp[i-1][t];
+                unsigned long long nt=prev[t];
                 unsigned long long take=0;
-                if(t>=c[i])take=dp[i][t-c[i]];
-                dp[i][t]=nt+take;
+                if(t>=c[i])take=curr[t-c[i]];
+                curr[t]=nt+take;
             }
+            prev=curr;
         }
-        return dp[n-1][amount];
+        return prev[amount];
     }
 };

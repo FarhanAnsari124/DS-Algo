@@ -16,7 +16,7 @@ public:
     }
     int change(int amount, vector<int>& c) {
         int n=c.size();
-        vector<vector<double>>dp(n,vector<double>(amount+1,1));
+        vector<vector<unsigned long long>>dp(n,vector<unsigned long long>(amount+1,1));
         // return solve(n-1,amount,c,dp);
         for(int t=0;t<=amount;t++){
             if(t%c[0]==0){
@@ -26,8 +26,8 @@ public:
         }
         for(int i=1;i<n;i++){
             for(int t=0;t<=amount;t++){
-                double nt=dp[i-1][t];
-                double take=0;
+                unsigned long long nt=dp[i-1][t];
+                unsigned long long take=0;
                 if(t>=c[i])take=dp[i][t-c[i]];
                 dp[i][t]=nt+take;
             }

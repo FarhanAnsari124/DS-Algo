@@ -28,10 +28,10 @@ class Solution
                 if (s1[i1-1] == s2[i2-1])
                 {
                     dp[i1][i2] = 1 + dp[i1 - 1][i2 - 1];
-                    continue;
+                    
                     
                 }
-                dp[i1][i2] = max(dp[i1 - 1][i2], dp[i1][i2 - 1]);
+                else dp[i1][i2] = max(dp[i1 - 1][i2], dp[i1][i2 - 1]);
                 
             }
         }

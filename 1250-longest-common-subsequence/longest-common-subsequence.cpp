@@ -19,7 +19,7 @@ class Solution
         int n1 = s1.size();
         int n2 = s2.size();
         cout << n2;
-        vector<vector <int>> dp(n1+1, vector<int> (n2+1, 0));
+        vector <int> prev(n2+1, 0),curr(n2+1,0);
         // return solve(n1, n2, s1, s2, dp);
         for (int i1 = 1; i1 <= n1; i1++)
         {
@@ -27,14 +27,13 @@ class Solution
             {
                 if (s1[i1-1] == s2[i2-1])
                 {
-                    dp[i1][i2] = 1 + dp[i1 - 1][i2 - 1];
-                    
-                    
+                    curr[i2] = 1 + prev[i2 - 1];
                 }
-                else dp[i1][i2] = max(dp[i1 - 1][i2], dp[i1][i2 - 1]);
+                else curr[i2] = max(prev[i2], curr[i2 - 1]);
                 
             }
+            prev=curr;
         }
-        return dp[n1][n2];
+        return curr[n2];
     }
 };

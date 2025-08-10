@@ -2,7 +2,7 @@ class Solution {
 public:
     bool reorderedPowerOf2(int n) {
         set<string>poftwo;
-        for(int i=0;i<=30;i++){
+        for(int i=0;i<=29;i++){
             string t=to_string((int)pow(2,i));
             sort(t.begin(),t.end());
             // cout<<t;

@@ -24,9 +24,6 @@ public:
                 if(s[i-1]==t[j-1]){
                     dp[j]=dp[j-1]+dp[j];
                 }
-                else{
-                    dp[j]=dp[j];
-                }
             }
         }
         return dp[m];

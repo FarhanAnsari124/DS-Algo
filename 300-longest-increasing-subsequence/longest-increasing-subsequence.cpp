@@ -18,7 +18,7 @@ public:
         vector<vector<int>>dp(n+1,vector<int>(n+1,0));
         // return solve(0,n,-1,nums,dp);
         for(int i=n-1;i>=0;i--){
-            for(int prev=n-1;prev>=-1;prev--){
+            for(int prev=i-1;prev>=-1;prev--){
                 int nt=0+dp[i+1][prev+1];
                 int t=0;
                 if(prev==-1 || nums[i]>nums[prev]){

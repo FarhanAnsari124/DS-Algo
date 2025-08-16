@@ -17,22 +17,19 @@ public:
         if(!root)return{};
         q.push(root);
         int size=q.size();
-        int i=-1;
+        bool l_to_r=true;
         while(!q.empty()){
-            i++;
             size=q.size();
-            vector<int>v;
+            vector<int>v(size);
             for(int i=0;i<size;i++){
                 TreeNode* temp=q.front();q.pop();
                 if(temp->left)q.push(temp->left);
                 if(temp->right)q.push(temp->right);
-                v.push_back(temp->val);
+                int ind=(l_to_r)?i:(size-i-1);
+                v[ind]=temp->val;
             }
-           if(i%2==0) ans.push_back(v);
-           else{
-            reverse(v.begin(),v.end());
+            l_to_r=!l_to_r;
             ans.push_back(v);
-           }
         }
         return ans;
     }

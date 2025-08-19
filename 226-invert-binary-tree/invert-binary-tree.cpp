@@ -13,17 +13,7 @@ class Solution {
 public:
     void solve(TreeNode* root){
         if(root==nullptr)return;
-        if(root->left && root->right){
-            swap(root->left,root->right);
-        }
-        else if(root->left){
-            root->right=root->left;
-            root->left = nullptr;
-        }
-        else if(root->right){
-            root->left=root->right;
-            root->right = nullptr;
-        }
+        swap(root->left,root->right);
         solve(root->left);
         solve(root->right);
     }

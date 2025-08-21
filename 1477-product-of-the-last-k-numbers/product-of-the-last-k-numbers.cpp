@@ -16,7 +16,7 @@ public:
             n++;
         }
         else{
-            pmult.push_back(pmult[n-1]*num);
+            pmult.push_back(pmult.back()*num);
             n++;
         }
     }
@@ -25,7 +25,7 @@ public:
 
         if(n==k)return pmult[n-1];
         else if(k>n)return 0;
-        return pmult[n-1]/pmult[n-k-1];
+        return pmult.back()/pmult[n-k-1];
     }
 };
 

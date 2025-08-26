@@ -14,11 +14,7 @@ public:
             }
             else if(mapy.find(dia)==mapy.end()) mapy[dia]=area;
             ans=(dia>ans)?dia:ans;
-            for(auto x:mapy){
-                cout<<x.first;
-            }
         }
-        cout<<endl<<ans;
         return mapy[ans];
     }
 };

@@ -11,27 +11,24 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,vector<int>&inord){
+    void solve(TreeNode* root,vector<int>&inord,bool &making,int &i){
         if(root==nullptr){
             return;
         }
-        solve(root->left,inord);
-        inord.push_back(root->val);
-        solve(root->right,inord);
-    }
-    void rec(TreeNode* root,vector<int>&inord,int &i){
-         if(root==nullptr){
-            return;
-        }
-        rec(root->left,inord,i);
+        solve(root->left,inord,making,i);
+        if(making)inord.push_back(root->val);
+        else {
             root->val=inord[i++];
-        rec(root->right,inord,i);
+        }
+        solve(root->right,inord,making,i);
     }
     void recoverTree(TreeNode* root) {
         vector<int>inord;
-        solve(root,inord);
-        sort(inord.begin(),inord.end());
         int i=0;
-        rec(root,inord,i);
+        bool making=true;
+        solve(root,inord,making,i);
+        sort(inord.begin(),inord.end());
+        making=false;
+        solve(root,inord,making,i);
     }
 };

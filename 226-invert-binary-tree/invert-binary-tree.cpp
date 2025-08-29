@@ -13,9 +13,7 @@ class Solution {
 public:
     void solve(TreeNode* root){
         if(root==nullptr)return;
-        if(root->left && root->right){
-            swap(root->left,root->right);
-        }else{
+        if(root->left || root->right){
             swap(root->left,root->right);
         }
         if(root->left)solve(root->left);

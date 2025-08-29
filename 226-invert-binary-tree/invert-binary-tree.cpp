@@ -18,7 +18,6 @@ public:
         }
         if(root->left)solve(root->left);
         if(root->right)solve(root->right);
-        return;
     }
     TreeNode* invertTree(TreeNode* root) {
         solve(root);

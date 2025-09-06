@@ -6,15 +6,15 @@ public:
         for(auto x:bills){
             if(x==5)five++;
             else if(x==10){
-                if(five>0)five--;
+                if(five)five--;
                 else return false;
                 ten++;
             }
             else if(x==20){
-                if(ten>=1 && five>=1){
+                if(ten && five){
                     ten-=1;
                     five-=1;
-                }else if (ten==0 && five>=3){
+                }else if (five>=3){
                     five-=3;
                 }
                 else return false;

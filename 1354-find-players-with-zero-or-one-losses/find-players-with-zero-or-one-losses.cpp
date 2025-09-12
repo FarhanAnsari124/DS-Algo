@@ -3,12 +3,10 @@ public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
         map<int,int>mapy;
         for(auto x:matches){
-            int winner=x[0];
-            int losser=x[1];
-            if(mapy.find(winner)==mapy.end()){
-                mapy.insert({winner,0});
+            if(mapy.find(x[0])==mapy.end()){
+                mapy.insert({x[0],0});
             }
-            mapy[losser]++;
+            mapy[x[1]]++;
         }
         vector<vector<int>>ans(2);
         for(auto x:mapy){

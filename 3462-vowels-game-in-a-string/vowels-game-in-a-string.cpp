@@ -5,8 +5,8 @@ public:
     }
     bool doesAliceWin(string s) {
       int cnt_of_vowels=0;
-      for(auto x:s){
-        if(is_vowel(x)){
+      for(char &c:s){
+        if(is_vowel(c)){
             cnt_of_vowels++;
         }
       }

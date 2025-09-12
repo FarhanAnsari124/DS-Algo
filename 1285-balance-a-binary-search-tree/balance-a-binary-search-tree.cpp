@@ -29,7 +29,7 @@ public:
         return root;
     }
     TreeNode* balanceBST(TreeNode* root) {
-        nodes.clear();
+        // nodes.clear();
         inorder(root);
         return make_tree(0,nodes.size()-1,nodes);
     }

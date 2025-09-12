@@ -8,19 +8,15 @@ public:
             all.insert(x[1]);
             mapy[x[1]]++;
         }
-        vector<vector<int>>ans;
-        vector<int>oneloss;
-        vector<int>zeroloss;
+        vector<vector<int>>ans(2);
         for(auto x:mapy){
-            if(x.second==1)oneloss.push_back(x.first);
+            if(x.second==1)ans[1].push_back(x.first);
         }
         for(auto x:all){
             if(mapy.find(x)==mapy.end()){
-                zeroloss.push_back(x);
+                ans[0].push_back(x);
             }
         }
-        ans.push_back(zeroloss);
-        ans.push_back(oneloss);
         return ans;
     }
 };

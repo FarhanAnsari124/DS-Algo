@@ -3,21 +3,12 @@ public:
     string addBinary(string a, string b) {
       int n=a.size();
       int m=b.size();
-      if(m>n){
-        string s;
-        for(int i=0;i<(m-n);i++){
-            s+="0";
+      string s;
+      for(int i=0;i<abs(m-n);i++){
+           s+="0";
         }
-        a=s+a;
-      }else{
-        string s;
-        for(int i=0;i<(n-m);i++){
-            s+="0";
-        }
-        b=s+b;
-      }
-      cout<<a<<endl;
-      cout<<b;
+      if(n>m)b=s+b;
+      else a=s+a;
       n=a.size();m=b.size();
       int l=n-1;int r=m-1;
       int c=0;

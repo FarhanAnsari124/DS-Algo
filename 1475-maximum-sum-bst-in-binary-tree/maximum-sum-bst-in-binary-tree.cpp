@@ -23,8 +23,8 @@ public:
         if(r && l && root->val>left[2] && root->val<right[1]){
             int sum=left[0]+right[0]+root->val;
             maxsum=max(sum,maxsum);
-            int mini=min({left[1],right[1],root->val});
-            int maxi=max({left[2],right[2],root->val});
+            int mini=min({left[1],root->val});
+            int maxi=max({right[2],root->val});
             return {sum,mini,maxi,1};
         }else{
             return {0,0,0,0};

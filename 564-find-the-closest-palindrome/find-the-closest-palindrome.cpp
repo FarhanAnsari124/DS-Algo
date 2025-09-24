@@ -34,17 +34,12 @@ public:
         long long mini=1e15;
         int ansind=-1;
         sort(v.begin(),v.end());
-        for(auto x:v){
-            cout<<x<<" ,";
-        }
-        cout<<endl;
         for(int i=0;i<v.size();i++){
             long long diff=abs(v[i]-stoll(n));
             if(diff<mini){
                 mini=diff;
                 ansind=i;
             }
-            cout<<diff<<endl;
         }
         return to_string(v[ansind]);
         

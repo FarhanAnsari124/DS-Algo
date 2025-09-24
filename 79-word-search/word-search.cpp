@@ -9,7 +9,7 @@ public:
         if(s[k]!=mat[i][j])return false;
         char ch=mat[i][j];
         mat[i][j]='$';
-        for(auto x:dir){
+        for(auto &x:dir){
             if(solve(i+x.first,j+x.second,mat,s,k+1)){
                 return true;
             }

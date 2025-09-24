@@ -11,10 +11,12 @@ public:
         mat[i][j]='$';
         bool orr=false;
         for(auto x:dir){
-            orr|=solve(i+x.first,j+x.second,mat,s,k+1);
+            if(solve(i+x.first,j+x.second,mat,s,k+1)){
+                return true;
+            }
         }
         mat[i][j]=ch;
-        return orr;
+        return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
         for(int i=0;i<board.size();i++){

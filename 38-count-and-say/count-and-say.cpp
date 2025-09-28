@@ -19,15 +19,8 @@ public:
         return ans;
     }
     string countAndSay(int n) {
-        vector<string>rle(n+1);
-        rle[1]="1";
-        if(n==1){
-            return rle[n];
-        }
-        for(int i=2;i<=n;i++){
-            rle[i]=make_rle(rle[i-1]);
-        }
-        return rle[n];
-        
+        if(n==1)return "1";
+        string ans=countAndSay(n-1);
+        return make_rle(ans);
     }
 };

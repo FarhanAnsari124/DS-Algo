@@ -1,40 +1,43 @@
 class Solution {
 public:
     int compress(vector<char>& s) {
-       int len=1;
-       int i=1;
-       int n=s.size();
-       vector<char>ans;
-       while(i<n){
-            if(s[i]==s[i-1]){
-                len++;
+        int cnt=0;
+        char curr_char=s[0];
+        int n=s.size();
+        if(n==1)return n;
+        int i=0;
+        int indx=0;
+        while(i<n){
+            if(s[i]==curr_char){
+                cnt++;
+                i++;
             }else{
-                if(len>1){
-                    ans.push_back(s[i-1]);
-                    string l=to_string(len);
-                    for(int i=0;i<l.size();i++){
-                        ans.push_back(l[i]);
+                s[indx]=curr_char;
+                indx++;
+                if(cnt>1){
+                    string l=to_string(cnt);
+                    for(auto x:l){
+                        s[indx]=x;
+                        indx++;
                     }
-                }else{
-                    ans.push_back(s[i-1]);
                 }
-                len=1;
-            }
-            i++;
-        }
-        if(len>=1){
-            ans.push_back(s[i-1]);
-            if(len>1){
-                string l=to_string(len);
-                for(int i=0;i<l.size();i++){
-                    ans.push_back(l[i]);
-                }
-                // cout<<len;
+                cnt=0;
+                curr_char=s[i];
+                
             }
         }
-        for(int i=0;i<ans.size();i++){
-            s[i]=ans[i];
+        if(cnt>=1){
+            s[indx]=curr_char;
+            indx++;
+            if(cnt>1){
+                string l=to_string(cnt);
+                for(auto x:l){
+                    s[indx]=x;
+                    indx++;
+                }
+            }
         }
-        return ans.size();
+        return indx;
+
     }
 };

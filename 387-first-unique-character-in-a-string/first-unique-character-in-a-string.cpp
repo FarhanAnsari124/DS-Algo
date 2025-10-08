@@ -1,13 +1,14 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-        map<char,int>mapy;
+        unordered_map<char,int>mapy;
+        int n=s.size();
         int idx=0;
-        for(auto x:s){
-            mapy[x]++;
-            while(idx<s.size() && mapy[s[idx]]>1){
+        for(int i=0;i<n;i++){
+            mapy[s[i]]++;
+            while(idx<n && mapy[s[idx]]>1){
                 idx++;
-                if(idx==s.size())return -1;
+                if(idx==n)return -1;
             }
         }
         return idx;

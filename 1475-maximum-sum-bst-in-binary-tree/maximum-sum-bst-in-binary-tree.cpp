@@ -33,6 +33,5 @@ public:
     int maxSumBST(TreeNode* root) {
         vector<int>temp=solve(root);
         return maxsum;
-        
     }
 };

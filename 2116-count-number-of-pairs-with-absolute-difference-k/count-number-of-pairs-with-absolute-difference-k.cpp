@@ -5,7 +5,7 @@ public:
         int n=arr.size();
         int cnt=0;
         for(int i=0;i<n;i++){
-            int r1=target+arr[i];
+            int r1=arr[i]+target;
             int r2=arr[i]-target;
             if(mapy.find(r1)!=mapy.end()){
                 cnt+=mapy[r1];

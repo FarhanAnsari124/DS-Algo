@@ -8,18 +8,21 @@ public:
         }
         // for(auto x:arr)cout<<x<<" ";
         unordered_map<int,int>mapy;
-        vector<int>psum(n+1,0);
-        for(int i=1;i<=n;i++){
-            psum[i]=psum[i-1]+arr[i-1];
-        }
+        // vector<int>psum(n+1,0);
+        // for(int i=1;i<=n;i++){
+        //     psum[i]=psum[i-1]+arr[i-1];
+        // }
         // for(auto x:psum)cout<<x<<" ";
         int cnt=0;
-        for(int i=0;i<=n;i++){
-            int rem=psum[i]-k;
+        int sum=0;
+        mapy[0]=1;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            int rem=sum-k;
             if(mapy.find(rem)!=mapy.end()){
                 cnt+=mapy[rem];
             }
-            mapy[psum[i]]++;
+            mapy[sum]++;
         }
         return cnt;
     }

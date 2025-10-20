@@ -12,7 +12,7 @@ public:
         for(int i=1;i<=n;i++){
             psum[i]=psum[i-1]+arr[i-1];
         }
-        for(auto x:psum)cout<<x<<" ";
+        // for(auto x:psum)cout<<x<<" ";
         int cnt=0;
         for(int i=0;i<=n;i++){
             int rem=psum[i]-k;

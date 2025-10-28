@@ -1,25 +1,19 @@
 class Solution {
 public:
-    bool isBalanced(vector<int>freq){
-        int mini=1e9;
-        int maxi=0;
-        for(auto x:freq){
-            if(x>0){
-                mini=min(mini,x);
-                maxi=max(maxi,x);
-            }
+    bool isBalanced(vector<int>&mapy,int prev){
+        for(auto x:mapy){
+            if(x>0 && x!=prev)return false;
         }
-        if(maxi==0)return false;
-        return mini==maxi;
+        return true;
     }
     int longestBalanced(string s) {
         int n=s.size();
         int maxi=0;
         for(int i=0;i<n;i++){
-            vector<int>freq(26,0);
+            vector<int>mapy(26,0);
             for(int j=i;j<n;j++){
-                freq[s[j]-'a']++;
-                if(isBalanced(freq))maxi=max(maxi,j-i+1);
+                mapy[s[j]-'a']++;
+                if(isBalanced(mapy,mapy[s[i]-'a']))maxi=max(maxi,j-i+1);
             }
         }
         return maxi;

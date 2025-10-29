@@ -1,32 +1,38 @@
 class Solution {
 public:
-    set<vector<int>> st;
-    void twoSum(vector<int>& a,int i,int j, int target) {
-        int n=a.size();
-        while(i<j){
-            if(a[i]+a[j]==target){
-                while(j-i>2 && a[j]==a[j-1])j--;
-                while(j-i>2 && a[i]==a[i+1])i++;
-                st.insert({-target,a[i],a[j]});
-                i++;
-                j--;
-            }
-            else if(a[i]+a[j]>target){
-                j--;
-            }else{
-                i++;
-            }
-        }
-    }
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(),nums.end());
+        int k=0;
         int n=nums.size();
-        for(int i=0;i<n;i++){
-            int target=0-nums[i];
-            twoSum(nums,i+1,n-1,target);
+        set<vector<int>>st;
+        while(k<n-1){
+            while(k>0 && k<n-1 && nums[k]==nums[k-1]){
+                k++;
+            }
+            int target=-nums[k];
+            int i=k+1;
+            int j=n-1;
+            while(i<j){
+                if(nums[i]+nums[j]==target){
+                    st.insert({-target,nums[i],nums[j]});
+                    i++;
+                    j--;
+                    while(i<j && nums[i]==nums[i-1]){
+                        i++;
+                    }
+                    while(i<j && nums[j]==nums[j+1]){
+                        j--;
+                    }
+                }
+                else if(nums[i]+nums[j]>target){
+                    j--;
+                }else{
+                    i++;
+                }
+            }
+            k++;
         }
-        vector<vector<int>> v(st.begin(),st.end());
+        vector<vector<int>>v(st.begin(),st.end());
         return v;
-
     }
 };

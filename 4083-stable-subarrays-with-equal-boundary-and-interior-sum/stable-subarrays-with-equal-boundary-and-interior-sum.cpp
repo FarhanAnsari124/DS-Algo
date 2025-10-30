@@ -1,15 +1,16 @@
 class Solution {
 public:
+    using ll = long long;
     long long countStableSubarrays(vector<int>& arr) {
-        long long n=arr.size();
-        map<pair<long long,long long>,long long>mapy;
-        vector<long long>psum(n+1,0);
-        for(long long i=1;i<=n;i++){
+        ll n=arr.size();
+        map<pair<ll,ll>,ll>mapy;
+        vector<ll>psum(n+1,0);
+        for(ll i=1;i<=n;i++){
             psum[i]=psum[i-1]+arr[i-1];
         }
-        long long cnt=0;
-        for(long long i=1;i<=n;i++){
-            pair<long long,long long> rem={psum[i]-2*arr[i-1],arr[i-1]};
+        ll cnt=0;
+        for(ll i=1;i<=n;i++){
+            pair<ll,ll> rem={psum[i]-2*arr[i-1],arr[i-1]};
             if(mapy.find(rem)!=mapy.end()){
                 cnt+=mapy[rem];
             }

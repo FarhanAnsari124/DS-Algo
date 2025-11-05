@@ -2,14 +2,13 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n+1);
-        dp[0]=0;
-        dp[1]=nums[0];
-        for(int i=2;i<=n;i++){
-            int steal=nums[i-1]+dp[i-2];
-            int skip=dp[i-1];
-            dp[i]=max(steal,skip);
+        vector<int>dp(n);
+        dp[0]=nums[0];
+        if(n<2)return dp[0];
+        dp[1]=max(nums[0],nums[1]);
+        for(int i=2;i<n;i++){
+            dp[i]=max(dp[i-2]+nums[i],dp[i-1]);
         }
-        return dp[n];
+        return dp[n-1];
     }
 };

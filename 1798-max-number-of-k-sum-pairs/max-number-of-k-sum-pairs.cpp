@@ -9,8 +9,8 @@ public:
         int cnt=0;
         set<int>vis;
         for(auto x:mapy){
-            if(vis.find(x.first)!=vis.end())continue;
             int rem=k-x.first;
+            if(vis.find(x.first)!=vis.end() && vis.find(rem)!=vis.end())continue;
             vis.insert(x.first);
             vis.insert(rem);
             if(rem!=x.first){

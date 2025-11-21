@@ -1,39 +1,21 @@
-class Solution
-{
-    public:
-        int solve(int i1, int i2, string &s1, string &s2, vector<vector < int>> &dp)
-        {
-            if (i1 == 0 || i2 == 0)
-            {
-                return 0;
-            }
-            if (dp[i1][i2] != -1) return dp[i1][i2];
-            if (s1[i1-1] == s2[i2-1])
-            {
-                return dp[i1][i2] = 1 + solve(i1 - 1, i2 - 1, s1, s2, dp);
-            }
-            return dp[i1][i2] = max(solve(i1 - 1, i2, s1, s2, dp), solve(i1, i2 - 1, s1, s2, dp));
+class Solution {
+public:
+    int lcs(int m,int n,string &t1,string &t2,vector<vector<int>>&dp){
+        if(m==0 || n==0)return 0;
+        if(dp[m][n]!=-1)return dp[m][n];
+        if(t1[m-1]==t2[n-1]){
+           return dp[m][n]=1+lcs(m-1,n-1,t1,t2,dp);
         }
-    int longestCommonSubsequence(string s1, string s2)
-    {
-        int n1 = s1.size();
-        int n2 = s2.size();
-        cout << n2;
-        vector <int> prev(n2+1, 0),curr(n2+1,0);
-        // return solve(n1, n2, s1, s2, dp);
-        for (int i1 = 1; i1 <= n1; i1++)
-        {
-            for (int i2 = 1; i2 <= n2; i2++)
-            {
-                if (s1[i1-1] == s2[i2-1])
-                {
-                    curr[i2] = 1 + prev[i2 - 1];
-                }
-                else curr[i2] = max(prev[i2], curr[i2 - 1]);
-                
-            }
-            prev=curr;
+        else{
+            return dp[m][n]=max(lcs(m-1,n,t1,t2,dp),lcs(m,n-1,t1,t2,dp));
         }
-        return curr[n2];
+    }
+    int longestCommonSubsequence(string t1, string t2) {
+        int m=t1.size();
+        int n=t2.size();
+        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
+        int a= lcs(m,n,t1,t2,dp);
+        return dp[m][n];
+      
     }
 };

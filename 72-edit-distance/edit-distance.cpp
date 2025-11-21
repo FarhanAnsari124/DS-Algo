@@ -1,43 +1,20 @@
 class Solution {
 public:
-    int solve(int i,int j,string &s, string &t,vector<vector<int>>&dp){
-        if(i==0){
-            return j;
-        }
-        if(j==0){
-            return i;
-        }
-        if(dp[i][j]!=-1)return dp[i][j];
-        if(s[i-1]==t[j-1]){
-            return dp[i][j]=solve(i-1,j-1,s,t,dp);
-        }
-        else{
-            return dp[i][j]=1+min(solve(i,j-1,s,t,dp),min(solve(i-1,j,s,t,dp),solve(i-1,j-1,s,t,dp)));
-        }
-       
+    int ed(int m,int n,string &w1,string &w2,vector<vector<int>>&dp){
+        if(!m)
+            return n;
+        else if(!n)
+            return m;
+        if(dp[m][n]!=-1)return dp[m][n];
+        if(w1[m-1]==w2[n-1])
+            return dp[m][n]=ed(m-1,n-1,w1,w2,dp);
+        else 
+            return dp[m][n]=1+min({ed(m-1,n-1,w1,w2,dp),ed(m-1,n,w1,w2,dp),ed(m,n-1,w1,w2,dp)});
     }
-    int minDistance(string s, string t) {
-        int n=s.size();
-        int m=t.size();
-        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
-        // return solve(n,m,s,t,dp);
-        for(int j=0;j<=m;j++){
-            dp[0][j]=j;
-        }
-        for(int i=1;i<=n;i++){
-            dp[i][0]=i;
-        }
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=m;j++){
-                if(s[i-1]==t[j-1]){
-                    dp[i][j]=dp[i-1][j-1];
-                }
-                else{
-                    dp[i][j]=1+min(dp[i][j-1],min(dp[i-1][j],dp[i-1][j-1]));
-                }
-            }
-        }
-        return dp[n][m];
-        
+    int minDistance(string w1, string w2) {
+        int m=w1.size();
+        int n=w2.size();
+        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
+        return ed(m,n,w1,w2,dp);
     }
 };

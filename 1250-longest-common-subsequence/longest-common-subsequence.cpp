@@ -11,11 +11,20 @@ public:
         }
     }
     int longestCommonSubsequence(string t1, string t2) {
-        int m=t1.size();
-        int n=t2.size();
-        vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
-        int a= lcs(m,n,t1,t2,dp);
-        return dp[m][n];
+        int i=t1.size();
+        int j=t2.size();
+        vector<vector<int>>dp(i+1,vector<int>(j+1,0));
+        for(int m=1;m<=i;m++){
+            for(int n=1;n<=j;n++){
+                if(t1[m-1]==t2[n-1]){
+                    dp[m][n]=1+dp[m-1][n-1];
+                }
+                else{
+                    dp[m][n]=max(dp[m-1][n],dp[m][n-1]);
+                }
+            }
+        }
+        return dp[i][j];
       
     }
 };

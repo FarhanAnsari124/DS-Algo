@@ -1,39 +1,13 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        unordered_map<int,int>mapy;
         int n=nums.size();
-        int low=0;
-        int high=n-1;
-        int ans=-1;
-        while(low<=high){
-            int mid=(low+high)/2;
-            if(nums[mid]==target){
-                ans=mid;
-                break;
-            }
-            if(nums[low]<=nums[mid] && nums[mid]<nums[high]){
-                if(nums[mid]<target){
-                    low=mid+1;
-                }else{
-                    high=mid-1;
-                }
-            }
-            else if(nums[low]<=nums[mid]){
-                if(nums[low]<=target && target<nums[mid]){
-                    high=mid-1;
-                }else{
-                    low=mid+1;
-                }
-            }
-            else{
-                if(nums[high]>=target && nums[mid]<target){
-                    low=mid+1;
-                }else{
-                    high=mid-1;
-                }
-            }
+        for(int i=0;i<n;i++){
+            mapy[nums[i]]=i;
         }
-        return ans;
-
+        if(mapy.find(target)!=mapy.end())
+        return mapy[target];
+        else return -1;
     }
 };

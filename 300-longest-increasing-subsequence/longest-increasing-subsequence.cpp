@@ -4,8 +4,8 @@ public:
         if(i>=nums.size()){
             return 0;
         }
-        int nt,t=0;
         if(dp[i][pre+1]!=-1)return dp[i][pre+1];
+        int nt,t=0;
         nt=0+lis(i+1,pre,nums,dp);
         if(pre==-1 || nums[i]>nums[pre]){
             t=1+lis(i+1,i,nums,dp);

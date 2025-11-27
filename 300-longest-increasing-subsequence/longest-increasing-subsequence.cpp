@@ -13,7 +13,19 @@ public:
         return dp[i][pre+1]=max(t,nt);
     }
     int lengthOfLIS(vector<int>& nums) {
-        vector<vector<int>>dp(nums.size(),vector<int>(nums.size()+1,-1));
-        return lis(0,-1,nums,dp);
+        int n=nums.size();
+        vector<int>dp(nums.size(),1);
+        for(int i=1;i<n;i++){
+            for(int pre=0;pre<i;pre++){
+                if(nums[i]>nums[pre]){
+                    dp[i]=max(dp[i],dp[pre]+1);
+                }
+            }
+        }
+        int ans=1;
+        for(auto x:dp){
+            ans=max(x,ans);
+        }
+        return ans;
     }
 };

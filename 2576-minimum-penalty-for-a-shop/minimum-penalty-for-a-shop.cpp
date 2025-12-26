@@ -17,10 +17,6 @@ public:
                 }
             }else{
                 s++;
-                if(s<ans){
-                    ans=s;
-                    ind=i;
-                }
             }
        }
        return ind; 

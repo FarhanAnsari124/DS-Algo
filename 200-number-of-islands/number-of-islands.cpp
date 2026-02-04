@@ -1,14 +1,14 @@
 class Solution {
 public:
+    vector<vector<int>>dir={{-1,0},{1,0},{0,-1},{0,1}};
     void dfs(int i,int j,vector<vector<char>>& m,vector<vector<int>>&vis){
         if(i>=m.size() || j>=m[0].size() || m[i][j]=='0' || vis[i][j]){
             return;
         }
         vis[i][j]=1;
-        dfs(i+1,j,m,vis);
-        dfs(i-1,j,m,vis);
-        dfs(i,j+1,m,vis);
-        dfs(i,j-1,m,vis);
+        for(auto x:dir){
+            dfs(i+x[0],j+x[1],m,vis);
+        }
         return;
     }
     int numIslands(vector<vector<char>>& m) {

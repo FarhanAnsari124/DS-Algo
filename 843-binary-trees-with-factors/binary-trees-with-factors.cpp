@@ -8,7 +8,7 @@ public:
         for(auto x:arr){
             mapy[x]=1;
         }
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
             for(int j=0;j<i;j++){
                 if(arr[i]%arr[j]==0 && mapy.find(arr[i]/arr[j])!=mapy.end()){
                     mapy[arr[i]]+=(mapy[arr[j]]%MOD)*(mapy[arr[i]/arr[j]]%MOD)%MOD;

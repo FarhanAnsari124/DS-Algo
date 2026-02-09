@@ -22,7 +22,7 @@ public:
                 long long cost=(mx-mn)*(j-i+1);
                 if(cost<=k)break;
                 if(mini.front()==i) mini.pop_front();
-                if(maxi.front()<=i) maxi.pop_front();
+                if(maxi.front()==i) maxi.pop_front();
                 i++;
             }
             cnt+=(j-i+1);

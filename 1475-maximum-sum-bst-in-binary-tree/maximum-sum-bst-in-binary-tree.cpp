@@ -9,35 +9,22 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-struct info{
-    int sum;
-    int min;
-    int max;
-    bool isbst;
-}; 
 class Solution {
 public:
-    int maxsum=0;
-    info solve(TreeNode* root){
-        if(root==nullptr){
-            return {0,(int)1e5,(int)-1e5,1};//{sum,min,max,isbst}
-        }
-        info left=solve(root->left);
-        info right=solve(root->right);
-        bool l=left.isbst;
-        bool r=right.isbst;
-        if(r && l && root->val>left.max && root->val<right.min){
-            int sum=left.sum+right.sum+root->val;
-            maxsum=max(sum,maxsum);
-            int mini=min({left.min,root->val});
-            int maxi=max({right.max,root->val});
-            return {sum,mini,maxi,1};
+    vector<int> solve(TreeNode* root){
+        if(!root)return {0,INT_MIN,INT_MAX,0};//{sum,max,min,maxsum};
+        vector<int> left = solve(root->left);
+        vector<int> right = solve(root->right);
+        if(left[1]<root->val && root->val<right[2]){
+            int sum=left[0]+right[0]+root->val;
+            return {sum,max(root->val,right[1]),min(root->val,left[2]),max({left[3],right[3],sum})};
         }else{
-            return {0,0,0,0};
+            return {0,INT_MAX,INT_MIN,max(left[3],right[3])};
         }
     }
     int maxSumBST(TreeNode* root) {
-        info temp=solve(root);
-        return maxsum;
+        vector<int> ans=solve(root);
+        // cout<<ans[0]<<" "<<ans[1]<<" "<<ans[2]<<" "<<ans[3]<<;
+        return ans[3];
     }
 };

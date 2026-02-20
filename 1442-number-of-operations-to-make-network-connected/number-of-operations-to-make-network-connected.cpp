@@ -15,6 +15,7 @@ public:
         }
     }
     int makeConnected(int n, vector<vector<int>>& edges) {
+        if(edges.size()<n-1)return -1;
         vector<vector<int>>adj(n);
         vector<int>vis(n,0);
         for(auto x:edges){
@@ -28,7 +29,6 @@ public:
                 bfs(adj,n,i,vis);
             }
         }
-        if(edges.size()<n-1)return -1;
         return comp-1;
     }
 };

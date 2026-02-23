@@ -1,21 +1,19 @@
 class Solution {
 public:
     bool hasAllCodes(string s, int k) {
-        if(k>=s.size())return false;
-        vector<int>vis((1<<k),0);
-        int i=0;int j=0;
         int n=s.size();
+        if(n-k+1<(1<<k))return false;
+        vector<int>vis((1<<k),0);
+        int i=0;
         int num=0;
-        while(i<n && j<n){
+        int mask=(1<<k)-1;
+        while(i<n){
             num=num<<1;
-            num=num|(s[j]-'0');
-            if((j-i+1)>k){
-                if(s[i]=='1') num=num^(1<<k);
-                i++;
+            num=(num&mask)|(s[i]-'0');
+            if(i>=k-1){
+                vis[num]=1;
             }
-            if(num!=0)vis[num]=1;
-            else if((j-i+1)==k)vis[num]=1;
-            j++;
+            i++;
         }
         for(auto x:vis){
             if(!x)return false;

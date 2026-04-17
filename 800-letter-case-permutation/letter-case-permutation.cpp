@@ -1,22 +1,18 @@
 class Solution {
 public:
     vector<string>ans;
-    void solve(int i,int n,string &s,string &e){
+    void solve(int i,int n,string &s,string e){
         if(i==n){
             ans.push_back(e);
             return;
         }
         if((s[i]>='a' && s[i]<='z') || (s[i]>='A' && s[i]<='Z')){
-            e+=tolower(s[i]);
-            solve(i+1,n,s,e);
-            e.pop_back();
-            e+=toupper(s[i]);
-            solve(i+1,n,s,e);
-            e.pop_back();
+            char ch=tolower(s[i]);
+            solve(i+1,n,s,e+ch);
+            char nch=toupper(s[i]);
+            solve(i+1,n,s,e+nch);
         }else{
-            e.push_back(s[i]);
-            solve(i+1,n,s,e);
-            e.pop_back();
+            solve(i+1,n,s,e+s[i]);
         }
     }
     vector<string> letterCasePermutation(string s) {

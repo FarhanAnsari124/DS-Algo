@@ -10,7 +10,7 @@ public:
         }
         int maxi=dp[0];
         for(int i=1;i<n;i++){
-            dp[i]=dp[i-1]+((sum-nums[n-i])-nums[n-i]*(n-1));
+            dp[i]=dp[i-1]+sum-(n*nums[n-i]);
             maxi=max(dp[i],maxi);
         }
         return maxi;

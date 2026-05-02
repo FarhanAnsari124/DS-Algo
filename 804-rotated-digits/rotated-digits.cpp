@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<char,char>mapy={
+    map<char,char>mirrors={
         {'2','5'},
         {'6','9'},
         {'5','2'},
@@ -12,15 +12,14 @@ public:
     bool valid(int n,int limit){
         string s=to_string(n);
         for(int i=0;i<s.size();i++){
-            if(mapy.find(s[i])!=mapy.end()){
-                s[i]=mapy[s[i]];
+            if(mirrors.find(s[i])!=mirrors.end()){
+                s[i]=mirrors[s[i]];
             }else {
                 return false;
             }
         }
         int num=stoi(s);
         if(num!=n){
-            // cout<<n<<":"<<num<<endl;
             return true;
         }
         return false;

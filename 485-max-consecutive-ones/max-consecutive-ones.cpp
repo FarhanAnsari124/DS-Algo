@@ -12,7 +12,6 @@ public:
                 cnt=0;
             }
         }
-        maxi=max(cnt,maxi);
         return maxi;
     }
 };

@@ -8,15 +8,15 @@ class Pair{
 }
 class Solution {
     public String[] findRelativeRanks(int[] score) {
-        PriorityQueue<Pair> maxHeap = new PriorityQueue<>((a,b)-> Integer.compare(b.first,a.first));
+        PriorityQueue<Pair> minHeap = new PriorityQueue<>((a,b)-> Integer.compare(a.first,b.first));
         int n=score.length;
         for(int i=0;i<n;i++){
-            maxHeap.add(new Pair(score[i],i));
+            minHeap.add(new Pair(score[i],i));
         }
         String[] result = new String[n];
-        int pos=1;
-        while(!maxHeap.isEmpty()){
-            Pair p = maxHeap.poll();
+        int pos=n;
+        while(!minHeap.isEmpty()){
+            Pair p = minHeap.poll();
             if(pos==1){
                 result[p.second]="Gold Medal";
             }else if(pos==2){
@@ -27,7 +27,7 @@ class Solution {
             }else{
                 result[p.second]=String.valueOf(pos);
             }
-            pos++;
+            pos--;
         }
         return result;
     }

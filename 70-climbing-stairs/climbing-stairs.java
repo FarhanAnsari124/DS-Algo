@@ -15,8 +15,15 @@ class Solution {
     }
     public int climbStairs(int n) {
         int[] dp = new int[n+1];
-        Arrays.fill(dp,-1);
-        int a=f(n,dp);
+        dp[0]=1;
+        for(int i=1;i<=n;i++){
+            int o_j = dp[i-1];
+            int t_j=0;
+            if(i>1){
+                t_j = dp[i-2];
+            }
+            dp[i] = o_j +t_j;
+        }
         return dp[n];
     }
 }

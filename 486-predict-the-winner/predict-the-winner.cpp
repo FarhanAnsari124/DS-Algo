@@ -1,11 +1,8 @@
 class Solution {
 public:
     int solve(int i,int j,int p1,int p2,bool flag,vector<int>&nums){
-        if(i == j){
-            if(flag)
-                return (p1+nums[i])>=p2;
-            else
-                return p1>=(p2+nums[i]);
+        if(i>j){
+            return p1>=p2;
         }
         if(flag){
             int fr=solve(i+1,j,p1+nums[i],p2,false,nums);

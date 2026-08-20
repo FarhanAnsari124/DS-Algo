@@ -1,29 +1,20 @@
 class Solution {
 public:
-    int numberOfSubarrays(vector<int>& arr, int k) {
-        int n=arr.size();
-        for(int i=0;i<n;i++){
-            if(arr[i]%2==0)arr[i]=0;
-            else arr[i]=1;
-        }
-        // for(auto x:arr)cout<<x<<" ";
-        unordered_map<int,int>mapy;
-        // vector<int>psum(n+1,0);
-        // for(int i=1;i<=n;i++){
-        //     psum[i]=psum[i-1]+arr[i-1];
-        // }
-        // for(auto x:psum)cout<<x<<" ";
-        int cnt=0;
-        int sum=0;
-        mapy[0]=1;
-        for(int i=0;i<n;i++){
-            sum+=arr[i];
-            int rem=sum-k;
-            if(mapy.find(rem)!=mapy.end()){
-                cnt+=mapy[rem];
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        return subarrays(nums,k) - subarrays(nums,k-1);
+    }
+    int subarrays(vector<int>& nums, int k){
+        int l=0,r=0,n=nums.size(),count=0,sum=0;
+        
+        while( r< n){
+            sum = sum + (nums[r]%2);
+            while(sum > k){
+                sum = sum - (nums[l] % 2);
+                l++;
             }
-            mapy[sum]++;
+            count = count + (r-l+1);
+            r++;
         }
-        return cnt;
+        return count;
     }
 };

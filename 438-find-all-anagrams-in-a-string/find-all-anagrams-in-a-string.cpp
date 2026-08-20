@@ -2,7 +2,7 @@ class Solution {
 public:
     int checkanagram(string &s,int l,int r,vector<int>&frp){
         vector<int>frs(26,0);
-        for(int i=l;i<=r;i++)frs[s[i]-97]++;
+        for(int i=l;i<=r;i++)frs[s[i]-'a']++;
         for(int i=0;i<26;i++)
             if(frs[i]!=frp[i])
                 return 0;
@@ -10,7 +10,7 @@ public:
     }
     vector<int> findAnagrams(string s, string p) {
         vector<int>frp(26,0);
-        for(auto x:p)frp[x-97]++;
+        for(auto x:p)frp[x-'a']++;
         int l=0,r=0;
         int n=s.size();
         vector<int>v;

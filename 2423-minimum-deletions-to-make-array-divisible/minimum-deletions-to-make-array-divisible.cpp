@@ -13,10 +13,11 @@ public:
             gcd=_gcd(gcd,nums2[i]);
         }
         sort(nums.begin(),nums.end());
+        int c=0;
         for(int i=0;i<nums.size();i++){
             if(gcd%nums[i]==0){
-                return i;
-            }
+                return c;
+            }else c++;
         }
         return -1;
     }

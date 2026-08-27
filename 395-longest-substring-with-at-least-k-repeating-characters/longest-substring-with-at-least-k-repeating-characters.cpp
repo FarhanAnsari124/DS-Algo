@@ -9,6 +9,11 @@ public:
             mapy[s[k]]++;
         }
         int maxi=0;
+        bool flag=false;
+        for(auto x:mapy){
+            if(x.second>=q)flag=true;
+        }
+        if(!flag)return 0;
         for(int k=i;k<=j;k++){
             if(mapy[s[k]]<q){
                 return maxi=max(solve(i,k-1,s,q,n),solve(k+1,j,s,q,n));

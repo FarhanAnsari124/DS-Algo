@@ -12,21 +12,18 @@
 class Solution {
 public:
     int sum=0;
-    void solve(TreeNode* root,int curr){
-        if(root==nullptr){
+    void solve(TreeNode * root,int num){
+        if(root==nullptr)return;
+        num=num*10+root->val;
+        if(root->left==nullptr && root->right==nullptr){
+            sum+=num;
             return;
         }
-        if(!root->left && !root->right){
-            sum+=(curr*10+root->val);
-            return;
-        }
-        curr=curr*10+root->val;
-        solve(root->left,curr);
-        solve(root->right,curr);
+        solve(root->left,num);
+        solve(root->right,num);
     }
     int sumNumbers(TreeNode* root) {
         solve(root,0);
         return sum;
-        
     }
 };

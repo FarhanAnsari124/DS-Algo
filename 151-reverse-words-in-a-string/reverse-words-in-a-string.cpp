@@ -7,7 +7,6 @@ public:
         while(ss>>word){
             result=word +' '+ result;
         }
-        result.pop_back();
-        return result;
+        return result.substr(0,result.size()-1);
     }
 };

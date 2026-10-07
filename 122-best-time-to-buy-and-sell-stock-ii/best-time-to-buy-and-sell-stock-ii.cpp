@@ -1,21 +1,17 @@
 class Solution {
 public:
-    int solve(int i,int n,int canibuy,vector<int>& prices,vector<vector<int>>&dp){
-        if(i==n) return 0;
-        if(dp[i][canibuy]!=-1)return dp[i][canibuy];
-        int profit=0;
-        if(canibuy==1){
-            profit=-prices[i]+solve(i+1,n,0,prices,dp);
-            profit=max(profit,solve(i+1,n,1,prices,dp));
-        }else{
-            profit=prices[i]+solve(i+1,n,1,prices,dp);
-            profit=max(profit,solve(i+1,n,0,prices,dp));
+    int maxProfit(vector<int>& v) {
+        int n=v.size();
+        int prev_b=0,prev_s=0;
+        for(int i=n-1;i>=0;i--){
+            for(int buy=0;buy<=1;buy++){
+                if(buy){
+                    prev_b=max(prev_s-v[i],prev_b);
+                }else{
+                    prev_s=max(prev_b+v[i],prev_s);
+                }
+            }
         }
-        return dp[i][canibuy]=profit;
-    }
-    int maxProfit(vector<int>& prices) {
-        int n=prices.size();
-        vector<vector<int>>dp(n,vector<int>(2,-1));
-        return solve(0,n,1,prices,dp);
+        return prev_b;
     }
 };

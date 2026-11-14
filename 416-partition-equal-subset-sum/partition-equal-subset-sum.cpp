@@ -1,44 +1,27 @@
 class Solution {
 public:
-    bool solve(int ind, int target, vector<int>& a, vector<vector<int>>& dp) {
-        if (target == 0)
-            return true;
-        if (ind == 0)
-            return a[ind] == target;
-        if (dp[ind][target] != -1)
-            return dp[ind][target];
-        bool nt = solve(ind - 1, target, a, dp);
-        bool t = false;
-        if (target >= a[ind]) {
-            t = solve(ind - 1, target - a[ind], a, dp);
-        }
-        return dp[ind][target] = t || nt;
-    }
-    bool canPartition(vector<int>& a) {
-        int sum = accumulate(a.begin(), a.end(), 0);
-        int n = a.size();
-        int target = sum / 2;
-        vector<vector<bool>> dp(n, vector<bool>(target + 1, 0));
-        if (sum % 2 != 0)
-            return false;
-        else {
-            for (int i = 0; i < n; i++) {
+    bool canPartition(vector<int>& nums) {
+        int n=nums.size();
+        int sum=0;
+        for(auto x:nums)sum+=x;
+        int t=sum/2;
+        if(sum%2!=0)return false;
+        vector<vector<int>>dp(n,vector<int>(t+1,0));
+        for (int i = 0; i < n; i++) {
                 dp[i][0] = true;
             }
-            if (a[0] <= target)
-            dp[0][a[0]] = true;
-            
-            for (int ind = 1; ind < n; ind++) {
-                for (int j = 1; j <= target; j++) {
-                    bool nt = dp[ind - 1][j];
-                    bool t = false;
-                    if (j >= a[ind]) {
-                        t = dp[ind - 1][j - a[ind]];
-                    }
-                    dp[ind][j] = t || nt;
+        if (nums[0] <= t)
+        dp[0][nums[0]] = true;
+        for(int i=1;i<n;i++){
+            for(int target=1;target<=t;target++){
+                int exclude = dp[i-1][target];
+                int include=0;
+                if(target-nums[i]>=0){
+                    include = dp[i-1][target-nums[i]];
                 }
+                dp[i][target] = include||exclude;
             }
-            return dp[n - 1][target];
         }
+        return dp[n-1][t];
     }
 };
